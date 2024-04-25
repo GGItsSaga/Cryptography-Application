@@ -108,7 +108,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;SODIUM_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>"C:\Users\alexs\OneDrive\Documents\Local Projects\CryptographyAPI\libsodium\include"</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>"C:\Users\Danny\Desktop\University Files\libsodium\include"</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
