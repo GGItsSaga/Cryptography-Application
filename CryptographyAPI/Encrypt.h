@@ -139,6 +139,7 @@ public:
 		}
 	}
 
+	// returns file name when called
 	const std::vector<std::string>& getEncryptedFileNames() const
 	{
 		return fileNames;

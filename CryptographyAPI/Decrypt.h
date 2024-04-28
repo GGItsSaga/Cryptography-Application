@@ -7,14 +7,17 @@
 #include <vector>
 #include <stdexcept>
 
-class Decrypt {
+class Decrypt 
+{
 private:
     std::vector<std::string> filenames_;
     std::string key_;
 
-    std::string readFile(const std::string& filename) {
+    std::string readFile(const std::string& filename) 
+    {
         std::ifstream file(filename, std::ios::binary);
-        if (!file) {
+        if (!file) 
+        {
             throw std::runtime_error("Error opening file: " + filename);
         }
 
@@ -24,9 +27,11 @@ private:
         return content;
     }
 
-    void writeFile(const std::string& filename, const std::string& content) {
+    void writeFile(const std::string& filename, const std::string& content) 
+    {
         std::ofstream file(filename, std::ios::binary);
-        if (!file) {
+        if (!file) 
+        {
             throw std::runtime_error("Error creating or opening file: " + filename);
         }
 
@@ -34,10 +39,13 @@ private:
         file.close();
     }
 
-    void decryptAndSave(const std::string& ciphertext, const std::string& key, const std::string& filename) {
-        try {
+    void decryptAndSave(const std::string& ciphertext, const std::string& key, const std::string& filename) 
+    {
+        try 
+        {
             const size_t expectedSize = crypto_secretbox_NONCEBYTES + crypto_secretbox_MACBYTES;
-            if (ciphertext.size() < expectedSize) {
+            if (ciphertext.size() < expectedSize) 
+            {
                 throw std::runtime_error("Insufficient ciphertext size for decryption");
             }
 
@@ -60,32 +68,39 @@ private:
             writeFile("decrypted_" + filename, result);
 
         }
-        catch (const std::exception& e) {
+        catch (const std::exception& e) 
+        {
             std::cerr << "Exception during decryption: " << e.what() << std::endl;
             throw;  // Re-throw the exception after logging
         }
     }
 
 public:
-    Decrypt() {
-        if (sodium_init() < 0) {
+    Decrypt() 
+    {
+        if (sodium_init() < 0) 
+        {
             throw std::runtime_error("Error initializing Libsodium");
         }
     }
 
-    ~Decrypt() {
+    ~Decrypt() 
+    {
         sodium_memzero(&key_[0], key_.size());
     }
 
-    void setKey(const std::string& key) {
+    void setKey(const std::string& key) 
+    {
         key_ = key;
     }
 
-    void appendFile(const std::string& filename) {
+    void appendFile(const std::string& filename) 
+    {
         filenames_.push_back(filename);
     }
 
-    void decryptAndSaveAll() {
+    void decryptAndSaveAll() 
+    {
         for (const auto& filename : filenames_) {
             try {
                 std::string ciphertext = readFile(filename);
