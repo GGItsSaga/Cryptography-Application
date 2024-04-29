@@ -6,6 +6,7 @@
 #include <iostream>
 #include <vector>
 
+// Header file written by Alex 2/20/24
 class Encrypt
 {
 private:
